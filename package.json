@@ -1,0 +1,20 @@
+{
+  "name": "life-rpg",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "engine",
+    "server",
+    "client"
+  ],
+  "scripts": {
+    "dev:server": "npm run dev --workspace=server",
+    "dev:client": "npm run dev --workspace=client",
+    "test": "npm run test --workspace=engine",
+    "migrate": "npm run migrate --workspace=server",
+    "build": "npm run build --workspace=client"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

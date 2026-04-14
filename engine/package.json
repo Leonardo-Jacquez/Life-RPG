@@ -1,0 +1,12 @@
+{
+  "name": "@life-rpg/engine",
+  "version": "0.1.0",
+  "description": "Core decision engine for Life-RPG",
+  "main": "decisionEngine.js",
+  "scripts": {
+    "test": "node --test decisionEngine.test.js"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

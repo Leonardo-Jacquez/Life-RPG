@@ -1,0 +1,264 @@
+:root {
+  --bg: #0f0f1a;
+  --surface: #1a1a2e;
+  --card: #16213e;
+  --border: #2a2a4a;
+  --accent: #7c3aed;
+  --accent-light: #a78bfa;
+  --gold: #f59e0b;
+  --green: #10b981;
+  --red: #ef4444;
+  --blue: #3b82f6;
+  --text: #e2e8f0;
+  --text-muted: #94a3b8;
+  --radius: 12px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.4);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+/* ── Layout ── */
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 16px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+  width: 100%;
+  max-width: 560px;
+}
+
+.card-wide { max-width: 900px; }
+
+/* ── Typography ── */
+h1 { font-size: 2rem; font-weight: 700; color: var(--accent-light); }
+h2 { font-size: 1.4rem; font-weight: 600; margin-bottom: 12px; }
+h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; }
+p  { color: var(--text-muted); margin-bottom: 12px; }
+
+.title-block { text-align: center; margin-bottom: 32px; }
+.title-block p { font-size: 1rem; }
+
+/* ── Buttons ── */
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 10px 20px;
+  transition: opacity 0.15s, transform 0.1s;
+}
+button:active { transform: scale(0.97); }
+button:disabled { opacity: 0.45; cursor: not-allowed; }
+
+.btn-primary   { background: var(--accent); color: #fff; }
+.btn-primary:hover:not(:disabled)   { opacity: 0.88; }
+.btn-secondary { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
+.btn-secondary:hover:not(:disabled) { border-color: var(--accent-light); }
+.btn-gold      { background: var(--gold); color: #1a1a2e; }
+.btn-danger    { background: var(--red); color: #fff; }
+
+.btn-full { width: 100%; margin-top: 8px; }
+.btn-row  { display: flex; gap: 10px; margin-top: 12px; }
+
+/* ── Inputs ── */
+input, select, textarea {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 1rem;
+  padding: 10px 14px;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.15s;
+}
+input:focus, select:focus { border-color: var(--accent-light); }
+label { display: block; font-size: 0.875rem; color: var(--text-muted); margin-bottom: 6px; }
+.form-group { margin-bottom: 16px; }
+
+/* ── Stat bars ── */
+.stat-list { display: flex; flex-direction: column; gap: 10px; }
+.stat-row  { display: flex; align-items: center; gap: 12px; }
+.stat-label { font-size: 0.8rem; color: var(--text-muted); width: 90px; text-transform: uppercase; letter-spacing: 0.04em; }
+.stat-track { flex: 1; background: var(--surface); border-radius: 99px; height: 10px; overflow: hidden; }
+.stat-fill  { height: 100%; border-radius: 99px; transition: width 0.5s ease; }
+.stat-value { font-size: 0.85rem; font-weight: 700; width: 32px; text-align: right; }
+
+/* ── Phase badge ── */
+.phase-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 3px 10px;
+  border-radius: 99px;
+  background: var(--accent);
+  color: #fff;
+  margin-bottom: 16px;
+}
+
+/* ── Decision card ── */
+.event-prompt {
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+.choices { display: flex; flex-direction: column; gap: 10px; }
+.choice-btn {
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 14px 18px;
+  text-align: left;
+  transition: border-color 0.15s, background 0.15s;
+}
+.choice-btn:hover:not(:disabled) {
+  border-color: var(--accent-light);
+  background: rgba(124,58,237,0.12);
+}
+.choice-btn.selected {
+  border-color: var(--accent);
+  background: rgba(124,58,237,0.2);
+}
+
+/* ── Outcome text ── */
+.outcome-text {
+  background: var(--surface);
+  border-left: 3px solid var(--accent-light);
+  padding: 14px 16px;
+  border-radius: 0 8px 8px 0;
+  font-style: italic;
+  color: var(--text-muted);
+  margin: 16px 0;
+}
+
+/* ── Budget table ── */
+.budget-grid {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 6px 16px;
+  font-size: 0.9rem;
+}
+.budget-row { display: contents; }
+.budget-label { color: var(--text-muted); }
+.budget-val   { text-align: right; font-weight: 600; }
+.budget-divider { grid-column: 1 / -1; border-top: 1px solid var(--border); margin: 6px 0; }
+.budget-total   { color: var(--gold); font-weight: 700; font-size: 1rem; }
+.solvent-yes { color: var(--green); }
+.solvent-no  { color: var(--red); }
+
+/* ── Teacher class cards ── */
+.class-grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.class-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; cursor: pointer; transition: border-color 0.15s; }
+.class-card:hover { border-color: var(--accent-light); }
+.class-code { font-size: 1.5rem; font-weight: 700; letter-spacing: 0.15em; color: var(--gold); }
+
+/* ── Student row in class view ── */
+.student-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+.student-table th { color: var(--text-muted); font-weight: 600; text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.student-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); }
+.student-table tr:last-child td { border-bottom: none; }
+
+/* ── Path cards ── */
+.path-grid { display: grid; gap: 12px; }
+.path-card { border: 2px solid var(--border); border-radius: 10px; padding: 16px; cursor: pointer; transition: border-color 0.15s, background 0.15s; }
+.path-card:hover { border-color: var(--accent-light); background: rgba(124,58,237,0.08); }
+.path-card.selected { border-color: var(--accent); background: rgba(124,58,237,0.18); }
+.path-card h3 { color: var(--text); margin-bottom: 4px; }
+.path-card p { margin: 0; font-size: 0.85rem; }
+
+/* ── Score ring ── */
+.score-ring {
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  background: conic-gradient(var(--accent) var(--pct), var(--surface) 0);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 16px;
+  position: relative;
+}
+.score-ring::before {
+  content: '';
+  position: absolute;
+  inset: 14px;
+  border-radius: 50%;
+  background: var(--card);
+}
+.score-ring span {
+  position: relative;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--accent-light);
+}
+
+/* ── Alerts ── */
+.alert { border-radius: 8px; padding: 12px 16px; margin-bottom: 16px; font-size: 0.9rem; }
+.alert-error   { background: rgba(239,68,68,0.15); border: 1px solid var(--red);   color: var(--red); }
+.alert-success { background: rgba(16,185,129,0.15); border: 1px solid var(--green); color: var(--green); }
+.alert-info    { background: rgba(124,58,237,0.12); border: 1px solid var(--accent); color: var(--accent-light); }
+
+/* ── Ripple banner ── */
+.ripple-banner {
+  background: linear-gradient(135deg, rgba(245,158,11,0.2), rgba(124,58,237,0.2));
+  border: 1px solid var(--gold);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  text-align: center;
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.75; } }
+
+/* ── Psychometric question ── */
+.psych-question { margin-bottom: 24px; }
+.psych-question h3 { color: var(--text); margin-bottom: 12px; }
+.psych-options { display: flex; flex-direction: column; gap: 8px; }
+.psych-option {
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 16px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  text-align: left;
+  color: var(--text);
+  transition: border-color 0.15s;
+}
+.psych-option:hover    { border-color: var(--accent-light); }
+.psych-option.selected { border-color: var(--accent); background: rgba(124,58,237,0.15); }
+
+/* ── Misc ── */
+.spacer { height: 16px; }
+.text-muted  { color: var(--text-muted); font-size: 0.875rem; }
+.text-center { text-align: center; }
+.text-gold   { color: var(--gold); }
+.text-green  { color: var(--green); }
+.text-red    { color: var(--red); }
+
+/* ── Responsive ── */
+@media (max-width: 480px) {
+  h1 { font-size: 1.5rem; }
+  .card { padding: 16px; }
+}
